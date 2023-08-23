@@ -353,10 +353,6 @@ print(Matrix_mnp)
 #m = (c+b-a)/2
 #n = (c+a-b)/2
 #p = (b+a-c)/2
-print(D_1,E_1,F_1)
-print(norm_vec(O,A),norm_vec(O,B),norm_vec(O,C))
-print(norm_vec(I,A),norm_vec(I,B),norm_vec(I,C))
-print(I)
 
 #Generating all lines
 x_AB = line_gen(A,B)

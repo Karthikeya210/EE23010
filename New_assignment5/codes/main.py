@@ -3,58 +3,42 @@ import matplotlib.pyplot as plt
 from scipy.stats import binom
 
 # Sample size
-simlen = 10000
-k_values = np.arange(0,2)
+simlen = 100000
 # Possible outcomes
-string = "PROBABILITY"
+k_values = np.arange(3, 19)
 
 # Generate X1 and X2 without explicit loops
-y = np.random.choice(list(string), size=(simlen))
+y = np.random.randint(1, 7, size=(3, simlen))
+
+# Calculate X without loops
+X = np.sum(y, axis=0)
 
 # Find the frequency of each outcome
-unique, counts = np.unique(y, return_counts=True)
-print(unique)
+unique, counts = np.unique(X, return_counts=True)
+
 # Simulated probability
-psim = counts / simlen
-probs = []
-probs.append(1-(psim[0]+psim[2]+psim[4])) #Addition of probs except vowels 
-probs.append(psim[0]+psim[2]+psim[4]) #Addition of probs of vowels 
+psim = counts / simlen #Prob of sum 6 is psim[3]
+
+Z = np.all(y == 2, axis=0)
+uniqueZ, countsZ = np.unique(Z, return_counts=True)
+
+psimZ = countsZ/simlen #Prob of all 2 is psimZ[1] 
+
+print(psimZ[1]/psim[3]) 
 
 #Theoretical Probability
-p = 4/11 
-n = 1    
-#We can use binom to create binomial distribution
-rv = binom(n, p)
-
-#Make the list combinations with rv.pmf function
-combinations = rv.pmf(k_values)
-
-X_axis = ["Prob of pulling a non-vowel","Prob of pulling a vowel"]
+p_X3 = 1/216
+p_Y6 = 10/216
+p_X3andY5 = 1/216
+p_X3givenY6 = p_X3andY5/p_Y6
+print(p_X3givenY6)
 
 # Plotting
-plt.stem(X_axis, probs, markerfmt='o', linefmt='C0-', use_line_collection=True, label='Simulation')
-plt.stem(X_axis, combinations, markerfmt='o', linefmt='C1-', use_line_collection=True, label='Analysis')
+plt.stem(k_values, psim, markerfmt='o', linefmt='C0-', use_line_collection=True, label='Simulation')
 plt.xlabel('$k$')  # Use 'k' instead of 'n'
 plt.ylabel('$p_{X}(k)$')  # Use 'k' instead of 'n'
 plt.legend()
 plt.grid()
 
 # Save or display the plot
-plt.savefig('/home/karthikeya/Desktop/Probability/New_assignment4/figs/figure1.png')
 plt.show()
-
-
-
-
-#Theoretical Probability
-#string_ = list(string)
-#sample_space = len(string_)
-
-#unique2, counts2 = np.unique(string_, return_counts=True)
-
-#prob = list(counts2 / sample_space)
-#print(unique2)
-#print(counts2)
-#probability_dict = dict(zip(unique2, prob))
-
-#print(f"Therefore the probability of choosing a vowel is {probability_dict['A'] + probability_dict['I'] + probability_dict['O']}")

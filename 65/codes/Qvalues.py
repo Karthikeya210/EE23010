@@ -1,34 +1,41 @@
-import scipy.stats as stats
+import numpy as np
 
-# Define the observed value of M
-m = 50 # You need to specify the observed value of M
+# Given data
+data = np.array([0.13, 0.12, 0.78, 0.51])
 
-# Define the null and alternative hypotheses
-theta_null = 1/4
-theta_alt = 1/3
+# Define the hypothesized cumulative distribution function F0(x)
+def F0(x):
+    if x < 0:
+        return 0
+    elif 0 <= x < 1:
+        return x
+    else:
+        return 1
 
-# Define the sample size (n)
-n = 200 # You need to specify the sample size
+# Sort the data in ascending order
+sorted_data = np.sort(data)
 
-# Calculate the likelihood under H0 and H1
-likelihood_null = (theta_null ** m) * ((1 - theta_null) ** (n - m))
-likelihood_alt = (theta_alt ** m) * ((1 - theta_alt) ** (n - m))
+# Calculate the EDF (Empirical Distribution Function) values
+n = len(sorted_data)
+edf_values = np.arange(1, n + 1) / n
 
-# Calculate the likelihood ratio
-likelihood_ratio = likelihood_null / likelihood_alt
+# Calculate the absolute differences between EDF and F0
+differences = np.abs(edf_values - np.vectorize(F0)(sorted_data))
 
-# Define the significance level (alpha)
-alpha = 0.05
+# Find the maximum absolute difference (Kolmogorov-Smirnov test statistic D)
+D = np.max(differences)
 
-# Calculate the critical value based on the chi-squared distribution
-# with 1 degree of freedom (as we're comparing two models)
-critical_value = stats.chi2.ppf(1 - alpha, df=1)
+# Given significance level and critical value
+alpha = 0.01
+critical_value = 0.669
 
-# Determine which statement is true
-if likelihood_ratio > critical_value:
-    print("The likelihood ratio test rejects H0 if m > c for some c")
-elif likelihood_ratio < critical_value:
-    print("The likelihood ratio test rejects H0 if m < c for some c")
-else:
-    print("The likelihood ratio test does not provide a clear rejection criterion")
+# Perform the hypothesis test
+psi = 1 if D <= critical_value else 0
 
+# Calculate the observed value of D + ψ
+observed_value = D + psi
+
+# Print the results
+print("Kolmogorov-Smirnov test statistic D:", D)
+print("ψ:", psi)
+print("Observed value of D + ψ:", observed_value)

@@ -195,7 +195,7 @@ Its given that random sample is of size 4, So
 \end{align}
 The cdf of the random sample is given as 
 \begin{align}
-    F_0(x) &= 
+    F_X(x) &= 
     \begin{cases}
         0 &  x<0  \\
         x & 0\le x<1 \\
@@ -204,29 +204,30 @@ The cdf of the random sample is given as
 \end{align}
 The empirical distribution function(edf) $F_n$ for n independent and identically distributed (i.i.d.) ordered observations $X_i$ is defined as
 \begin{align}
-	F_n(x) = \frac{\text{no of (elements in the sample} \le x)}{n} \label{eq:st/65/3}
+	F_n(x) = \frac{\text{no of (elements in the sample} \le x)}{n} = \frac{1}{n} \sum_{i=1}^{n} 1_{X_i \le x}  \label{eq:st/65/3}
 \end{align}
+where $1_A$ is the indicator of event A.\\
 From \eqref{eq:st/65/1}, \eqref{eq:st/65/2} and \eqref{eq:st/65/3}, the edf for the given data will be
 \begin{align}
-  	F_n(0.13) = \frac{\text{no of (elements in the sample} \le 0.13)}{4} = \frac{1}{2}	\\
-  	F_n(0.12) = \frac{\text{no of (elements in the sample} \le 0.12)}{4} = \frac{1}{4}\\
-  	F_n(0.78) = \frac{\text{no of (elements in the sample} \le 0.78)}{4} = 1\\
-  	F_n(0.51) = \frac{\text{no of (elements in the sample} \le 0.51)}{4} = \frac{3}{4}
+  	F_n(0.13) = \frac{1}{4} \sum_{i=1}^{n} 1_{X_i \le 0.13} = \frac{1}{2}	\\
+  	F_n(0.12) = \frac{1}{4} \sum_{i=1}^{n} 1_{X_i \le 0.12} = \frac{1}{4}\\
+  	F_n(0.78) = \frac{1}{4} \sum_{i=1}^{n} 1_{X_i \le 0.78} = 1\\
+  	F_n(0.51) = \frac{1}{4} \sum_{i=1}^{n} 1_{X_i \le 0.51} = \frac{3}{4}
 \end{align}
-The Kolmogorov–Smirnov statistic for a given cdf $F_0(x)$ is
+The Kolmogorov–Smirnov statistic for a given cdf $F_X(x)$ is
 \begin{align}
-  	D_n = sup\abs{F_n(x) - F_0(x)}
+  	D_n = \sup\abs{F_n(x) - F_X(x)} 
 \end{align}
-The difference between cdf and edf for the given data will be
+The difference between cdf and edf for the given data will be (i.e., $\forall x \in \{0.13, 0.12, 0.78, 0.51\} $)
 \begin{align}
-  	F_n(0.13) - F_0(0.13) = 0.37\\
-  	F_n(0.12) - F_0(0.12) = 0.25\\
-  	F_n(0.78) - F_0(0.78) = 0.22\\
-  	F_n(0.51) - F_0(0.51) = 0.24
+  	F_n(0.13) - F_X(0.13) = 0.37\\
+  	F_n(0.12) - F_X(0.12) = 0.25\\
+  	F_n(0.78) - F_X(0.78) = 0.22\\
+  	F_n(0.51) - F_X(0.51) = 0.24
 \end{align}
 Then 
 \begin{align}
-  	D_n = sup(0.37,0.25,0.22,0.24) = 0.37 \label{eq:st/65/4}
+  	D_n = \sup(0.37,0.25,0.22,0.24) = 0.37 \label{eq:st/65/4}
 \end{align}
 Given that,
 \begin{align}

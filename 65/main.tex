@@ -202,28 +202,35 @@ The cdf of the random sample is given as
         1 & x\ge 1
     \end{cases} \label{eq:st/65/2}
 \end{align}
-The empirical distribution function(edf) $F_n$ for n independent and identically distributed (i.i.d.) ordered observations $X_i$ is defined as
+The empirical distribution function(edf) $G_n$ for n independent and identically distributed (i.i.d.) ordered observations $X_i$ is defined as
 \begin{align}
-	F_n(x) = \frac{\text{no of (elements in the sample} \le x)}{n} = \frac{1}{n} \sum_{i=1}^{n} 1_{X_i \le x}  \label{eq:st/65/3}
+	G_n(x) = \frac{\text{no of (elements in the sample} \le x)}{n} = \frac{1}{n} \sum_{i=1}^{n} 1(X_i \le x)  \label{eq:st/65/3}
 \end{align}
-where $1_A$ is the indicator of event A.\\
+where $1(A)$ is the indicator of event A and in \eqref{eq:st/65/3} it is defined as,
+\begin{align}
+	1(X_i \le x)=
+	\begin{cases}
+	1 & X_i \le x\\
+	0 & \text{otherwise}
+	\end{cases}
+\end{align}
 From \eqref{eq:st/65/1}, \eqref{eq:st/65/2} and \eqref{eq:st/65/3}, the edf for the given data will be
 \begin{align}
-  	F_n(0.13) = \frac{1}{4} \sum_{i=1}^{n} 1_{X_i \le 0.13} = \frac{1}{2}	\\
-  	F_n(0.12) = \frac{1}{4} \sum_{i=1}^{n} 1_{X_i \le 0.12} = \frac{1}{4}\\
-  	F_n(0.78) = \frac{1}{4} \sum_{i=1}^{n} 1_{X_i \le 0.78} = 1\\
-  	F_n(0.51) = \frac{1}{4} \sum_{i=1}^{n} 1_{X_i \le 0.51} = \frac{3}{4}
+  	G_n(0.13) = \frac{1}{4} \sum_{i=1}^{n} 1(X_i \le 0.13) = \frac{1}{2}	\\
+  	G_n(0.12) = \frac{1}{4} \sum_{i=1}^{n} 1(X_i \le 0.12) = \frac{1}{4}\\
+  	G_n(0.78) = \frac{1}{4} \sum_{i=1}^{n} 1(X_i \le 0.78) = 1\\
+  	G_n(0.51) = \frac{1}{4} \sum_{i=1}^{n} 1(X_i \le 0.51) = \frac{3}{4}
 \end{align}
 The Kolmogorov–Smirnov statistic for a given cdf $F_X(x)$ is
 \begin{align}
-  	D_n = \sup\abs{F_n(x) - F_X(x)} 
+  	D_n = \sup\abs{G_n(x) - F_X(x)} 
 \end{align}
 The difference between cdf and edf for the given data will be (i.e., $\forall x \in \{0.13, 0.12, 0.78, 0.51\} $)
 \begin{align}
-  	F_n(0.13) - F_X(0.13) = 0.37\\
-  	F_n(0.12) - F_X(0.12) = 0.25\\
-  	F_n(0.78) - F_X(0.78) = 0.22\\
-  	F_n(0.51) - F_X(0.51) = 0.24
+  	G_n(0.13) - F_X(0.13) = 0.37\\
+  	G_n(0.12) - F_X(0.12) = 0.25\\
+  	G_n(0.78) - F_X(0.78) = 0.22\\
+  	G_n(0.51) - F_X(0.51) = 0.24
 \end{align}
 Then 
 \begin{align}

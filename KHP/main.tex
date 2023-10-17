@@ -1,0 +1,195 @@
+\documentclass{beamer}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{hyperref}
+\usepackage{tkz-euclide} % loads  TikZ and tkz-base
+\usepackage{listings}
+    \usepackage{color}                                            %%
+    \usepackage{array}                                            %%
+    \usepackage{longtable}                                        %%
+    \usepackage{calc}                                             %%
+    \usepackage{multirow}                                         %%
+    \usepackage{hhline}                                           %%
+    \usepackage{ifthen}    
+    \usepackage{lscape}
+\usetheme{Frankfurt}
+\providecommand{\abs}[1]{\left\vert#1\right\vert}
+\title{Probability with Coding}
+\author{Karthikeya Hanu Prakash Kanithi}
+\institute{IIT Hyd}
+\date{\today}
+
+\begin{document}
+\lstset{
+    language=Python,   % Set the programming language for syntax highlighting
+    basicstyle=\ttfamily, % Set the font style for the code
+    keywordstyle=\color{blue}, % Customize keywords
+    commentstyle=\color{green}, % Customize comments
+    stringstyle=\color{red},   % Customize strings
+    numbers=left,      % Display line numbers
+    numberstyle=\tiny, % Set the style for line numbers
+    breaklines=true,   % Automatically wrap long lines
+}
+\lstset{
+    language=C,               % Set the programming language
+    basicstyle=\ttfamily,     % Font style for the code
+    keywordstyle=\color{blue}, % Keyword style
+    commentstyle=\color{green},% Comment style
+    stringstyle=\color{red},   % String style
+    numbers=left,             % Display line numbers
+    numberstyle=\tiny,        % Style for line numbers
+    breaklines=true,           % Automatically wrap long lines
+    frame=single,             % Add a frame around the code
+    showstringspaces=false,    % Don't show spaces within strings
+    tabsize=4,                % Set tab size to 4 spaces
+    morekeywords={printf, scanf, int, main, if, else, while}, % Additional keywords
+    extendedchars=true,       % Allow extended characters like underscores
+    literate={~} {$\sim$}{1}, % Replace ~ with a tilde symbol
+    backgroundcolor=\color{gray!10}, % Background color for the code
+    escapeinside={(*@}{@*)},  % Define an escape sequence for LaTeX code within comments
+}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\prt}[2]{\ensuremath{p_{#1}^{\left(#2\right)} }}        % own macro for this question
+\providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
+\providecommand{\sbrak}[1]{\ensuremath{{}\left[#1\right]}}
+\providecommand{\lsbrak}[1]{\ensuremath{{}\left[#1\right.}}
+\providecommand{\rsbrak}[1]{\ensuremath{{}\left.#1\right]}}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\lbrak}[1]{\ensuremath{\left(#1\right.}}
+\providecommand{\rbrak}[1]{\ensuremath{\left.#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\providecommand{\lcbrak}[1]{\ensuremath{\left\{#1\right.}}
+\providecommand{\rcbrak}[1]{\ensuremath{\left.#1\right\}}}
+\newcommand{\sgn}{\mathop{\mathrm{sgn}}}
+\providecommand{\abs}[1]{\left\vert#1\right\vert}
+\providecommand{\res}[1]{\Res\displaylimits_{#1}} 
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+%\providecommand{\norm}[1]{\lVert#1\rVert}
+\providecommand{\mtx}[1]{\mathbf{#1}}
+\providecommand{\mean}[1]{E\left[ #1 \right]}
+\providecommand{\cond}[2]{#1\middle|#2}
+\providecommand{\fourier}{\overset{\mathcal{F}}{ \rightleftharpoons}}
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+\newcommand{\cosec}{\,\text{cosec}\,}
+\providecommand{\dec}[2]{\ensuremath{\overset{#1}{\underset{#2}{\gtrless}}}}
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\newcommand{\mydet}[1]{\ensuremath{\begin{vmatrix}#1\end{vmatrix}}}
+\newcommand{\myaugvec}[2]{\ensuremath{\begin{amatrix}{#1}#2\end{amatrix}}}
+\providecommand{\rank}{\text{rank}}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
+	\newcommand*{\permcomb}[4][0mu]{{{}^{#3}\mkern#1#2_{#4}}}
+\newcommand*{\perm}[1][-3mu]{\permcomb[#1]{P}}
+\newcommand*{\comb}[1][-1mu]{\permcomb[#1]{C}}
+\providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
+\providecommand{\gauss}[2]{\mathcal{N}\ensuremath{\left(#1,#2\right)}}
+\providecommand{\diff}[2]{\ensuremath{\frac{d{#1}}{d{#2}}}}
+\providecommand{\myceil}[1]{\left \lceil #1 \right \rceil }
+\newcommand\figref{Fig.~\ref}
+\newcommand\tabref{Table~\ref}
+\newcommand{\sinc}{\,\text{sinc}\,}
+\newcommand{\rect}{\,\text{rect}\,}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Objectives}
+  \begin{itemize}
+  \item Generate standard normal random variable using C
+  \item Solve our problem statement 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Python vs C}
+  \begin{itemize}
+  \item Python already has inbuilt libraries through which we can generate standard normal random variables. But In C we have to generate them using random numbers...
+  \item Here is where we will learn about Box-muller transforms 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Box-Muller Transform}
+  \begin{itemize}
+  \item Suppose U1 and U2 are independent samples chosen from the uniform distribution on the unit interval (0, 1). Let
+  \begin{align}
+  	Z_0 = R \cos(\Theta) =\sqrt{-2 \ln U_1} \cos(2 \pi U_2)\,
+  \end{align}
+  \item  and
+  \begin{align}
+  	Z_1 = R \sin(\Theta) =\sqrt{-2 \ln U_1} \cos(2 \pi U_2)\, 
+  \end{align}
+  \item Then $Z_0$ and $Z_1$ are independent random variables with a standard normal distribution.
+  \item So, now we will generate $Z_0$ using C Code as given below 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{C-code}
+  \lstinputlisting[language=C]{/home/sayyam/KHP/codes/rand.c}
+  % Include your LaTeX equations and calculations here...
+\end{frame}
+
+\begin{frame}{Python-code}
+  \lstinputlisting[language=Python]{/home/sayyam/KHP/codes/rand.py}
+  % Include your LaTeX equations and calculations here...
+\end{frame}
+
+\begin{frame}{Python-code}
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{/home/sayyam/KHP/figs/figure1.png}  % Replace 'image_filename' with your image file name
+  \caption{Histogram plot of density of $Z_0$}
+  \label{fig:your_label}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Problem Statement}
+  Let $\phi(.)$ denote the cumulative distribution function of a standard normal
+random variable. If the random variable $X$ has the cumulative distribution
+function 
+\begin{align}
+	F(x)&= 
+    \begin{cases}
+        \phi(x), &  x < -1 \\
+        \phi(x+1) , &  x \ge -1
+    \end{cases} \label{eq:15st/2023}
+\end{align}
+then which one of the following statements is true?
+\begin{enumerate}
+\item $P(X \leq -1) = \frac{1}{2}$
+\item $P(X = -1) = \frac{1}{2}$
+\item $P(X < -1) = \frac{1}{2}$
+\item $P(X \leq 0) = \frac{1}{2}$
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{C-code}
+  \lstinputlisting[language=C]{/home/sayyam/KHP/codes1/rand.c}
+  % Include your LaTeX equations and calculations here...
+\end{frame}
+
+\begin{frame}{Python-code}
+  \lstinputlisting[language=Python]{/home/sayyam/KHP/codes1/rand.py}
+  % Include your LaTeX equations and calculations here...
+\end{frame}
+
+\begin{frame}{Python-code}
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{/home/sayyam/KHP/figs/figure2.png}  % Replace 'image_filename' with your image file name
+  \caption{Histogram plot of density of $Z_0$}
+  \label{fig:your_label}
+\end{figure}
+\end{frame}
+\end{document}
+

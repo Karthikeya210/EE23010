@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Spotify-Like Audio Player</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Random Audio Player</h1>
+
+        <!-- Display the list of songs -->
+        <ul class="song-list">
+            {% for audio_file in audio_files %}
+                <li>
+                    <a href="#" onclick="playAudio('{{ audio_file }}')">{{ audio_file }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Audio player to play the selected song -->
+        <audio id="audioPlayer" controls onended="playNextSong()">
+            <source src="" type="audio/mpeg">
+        </audio>
+
+<script>
+    let currentSongIndex = {{ current_song_index }};
+    let lastSelectedAudio = null;  // Keep track of the last selected audio file
+    const audioFiles = [{% for audio_file in audio_files %}"{{ audio_file }}"{% if not loop.last %},{% endif %}{% endfor %}];
+
+    function playAudio(selectedAudio) {
+        // Only update the current song index if a new song is selected
+        if (selectedAudio !== lastSelectedAudio) {
+            currentSongIndex = audioFiles.indexOf(selectedAudio);
+            lastSelectedAudio = selectedAudio;
+        }
+
+        fetch('/', {
+            method: 'POST',
+            body: new URLSearchParams({ selected_audio: selectedAudio }),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .then(response => response.blob())
+        .then(audioBlob => {
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.src = audioUrl;
+            audioPlayer.load();
+            audioPlayer.play();
+        });
+    }
+
+    function playNextSong() {
+        currentSongIndex = (currentSongIndex + 1) % audioFiles.length;
+        lastSelectedAudio = null; // Reset the last selected audio
+        loadAudio(currentSongIndex);
+    }
+
+    function playPreviousSong() {
+        currentSongIndex = (currentSongIndex - 1 + audioFiles.length) % audioFiles.length;
+        lastSelectedAudio = null; // Reset the last selected audio
+        loadAudio(currentSongIndex);
+    }
+
+    function loadAudio(index) {
+        const audioFile = audioFiles[index];
+        fetch('/', {
+            method: 'POST',
+            body: new URLSearchParams({ selected_audio: audioFile }),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .then(response => response.blob())
+        .then(audioBlob => {
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.src = audioUrl;
+            audioPlayer.load();
+            audioPlayer.play();
+        });
+    }
+</script>
+
+    </div>
+    <div class="controls">
+        <button onclick="playPreviousSong()">Previous</button>
+        <button onclick="playNextSong()">Next</button>
+    </div>
+</body>
+</html>
+

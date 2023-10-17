@@ -10,6 +10,10 @@
     <div class="container">
         <h1>Random Audio Player</h1>
 
+        <!-- Add a checkbox for shuffle option -->
+        <input type="checkbox" id="shuffleCheckbox" onchange="toggleShuffle(this)">
+        <label for="shuffleCheckbox">Shuffle</label>
+
         <!-- Display the list of songs -->
         <ul class="song-list">
             {% for audio_file in audio_files %}
@@ -26,19 +30,36 @@
 
 <script>
     let currentSongIndex = {{ current_song_index }};
-    let lastSelectedAudio = null;  // Keep track of the last selected audio file
-    const audioFiles = [{% for audio_file in audio_files %}"{{ audio_file }}"{% if not loop.last %},{% endif %}{% endfor %}];
+    let lastSelectedAudio = null;
+    let isShuffleEnabled = false;
+    let originalAudioFiles = [{% for audio_file in audio_files %}"{{ audio_file }}"{% if not loop.last %},{% endif %}{% endfor %}];
+    let audioFiles = [...originalAudioFiles]; // Create a copy of the original order
+
+    function toggleShuffle(checkbox) {
+        isShuffleEnabled = checkbox.checked;
+        if (isShuffleEnabled) {
+            shuffleArray(audioFiles);
+        } else {
+            audioFiles = [...originalAudioFiles]; // Reset to the original order
+        }
+    }
 
     function playAudio(selectedAudio) {
-        // Only update the current song index if a new song is selected
-        if (selectedAudio !== lastSelectedAudio) {
+        if (isShuffleEnabled) {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * audioFiles.length);
+            } while (randomIndex === currentSongIndex);
+            currentSongIndex = randomIndex;
+        } else {
             currentSongIndex = audioFiles.indexOf(selectedAudio);
-            lastSelectedAudio = selectedAudio;
         }
+
+        lastSelectedAudio = audioFiles[currentSongIndex];
 
         fetch('/', {
             method: 'POST',
-            body: new URLSearchParams({ selected_audio: selectedAudio }),
+            body: new URLSearchParams({ selected_audio: lastSelectedAudio }),
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
         .then(response => response.blob())
@@ -52,14 +73,34 @@
     }
 
     function playNextSong() {
-        currentSongIndex = (currentSongIndex + 1) % audioFiles.length;
-        lastSelectedAudio = null; // Reset the last selected audio
+        if (isShuffleEnabled) {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * audioFiles.length);
+            } while (randomIndex === currentSongIndex);
+            currentSongIndex = randomIndex;
+        } else {
+            currentSongIndex = (currentSongIndex + 1) % audioFiles.length;
+        }
+
+        lastSelectedAudio = audioFiles[currentSongIndex];
+
         loadAudio(currentSongIndex);
     }
 
     function playPreviousSong() {
-        currentSongIndex = (currentSongIndex - 1 + audioFiles.length) % audioFiles.length;
-        lastSelectedAudio = null; // Reset the last selected audio
+        if (isShuffleEnabled) {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * audioFiles.length);
+            } while (randomIndex === currentSongIndex);
+            currentSongIndex = randomIndex;
+        } else {
+            currentSongIndex = (currentSongIndex - 1 + audioFiles.length) % audioFiles.length;
+        }
+
+        lastSelectedAudio = audioFiles[currentSongIndex];
+
         loadAudio(currentSongIndex);
     }
 
@@ -79,8 +120,15 @@
             audioPlayer.play();
         });
     }
-</script>
 
+    // Helper function to shuffle an array in-place
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+</script>
     </div>
     <div class="controls">
         <button onclick="playPreviousSong()">Previous</button>

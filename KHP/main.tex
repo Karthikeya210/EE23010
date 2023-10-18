@@ -144,7 +144,7 @@
   \begin{align}
   	f_{XY}(X,Y) &= f(x)f(y)\\
   	&= \frac{1}{\sqrt{2\pi}}e^{\frac{-x^2}{2}}.\frac{1}{\sqrt{2\pi}}e^{\frac{-y^2}{2}}\\
-  	&= \frac{1}{\sqrt{2\pi}}e^{\frac{-(x^2+y^2)}{2}}
+  	&= \frac{1}{2\pi}e^{\frac{-(x^2+y^2)}{2}}
   \end{align}
   \end{itemize}
 \end{frame}
@@ -163,6 +163,7 @@
   \item i.e.,
   \begin{align}
   	f_{R\theta}(r,\theta) = f_{XY}(x,y) \frac{dxdy}{drd\theta}
+  	= f_{XY}(x,y) \mydet{\frac{\partial(x,y)}{\partial(r,\theta)}}
   \end{align}
   \end{itemize}
 \end{frame}
@@ -172,34 +173,109 @@
   \item where J is the Jacobian 
   \begin{align}
   	J &= \mydet{\frac{\partial x}{\partial r} \,\, \frac{\partial x}{\partial \theta}\\\frac{\partial y}{\partial r} \,\, \frac{\partial y}{\partial \theta}}\\
-  	&= \mydet{\cos\theta \,\, -r\sin\theta \\ \sin\theta \,\, r\cos\theta}
-  	&= r
+  	&= \mydet{\cos\theta \,\, -r\sin\theta \\ \sin\theta \,\, r\cos\theta} = r
   \end{align}
-  \item Change $f_{XY}(x,y)$ to polar coordinates :
+  \item For $r\ge$ 0 and $\theta \in [0,2\pi)$, we have 
   \begin{align}
-  	f_{XY}(x,y) dxdy = f_{R\theta}(r,\theta) drd\theta
+  	f_{R\theta}(r,\theta) drd\theta = \frac{1}{2\pi}e^{\frac{-(r^2)}{2}}rdrd\theta
   \end{align}
-  \item i.e.,
+  \item Now we change the variable from $(r,\theta)$ to $(r^2,\theta)$;
   \begin{align}
-  	f_{R\theta}(r,\theta) = f_{XY}(x,y) \frac{dxdy}{drd\theta}
+  	rdr = \frac{1}{2}dr^2
   \end{align}
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Proof}
+  \begin{itemize} 
+  \item Now it can be written as, 
+  \begin{align}
+  	f_{R\theta}(r,\theta)drd\theta &= f_{R^2\theta}(r^2,\theta)dr^2d\theta\\
+  	&= \frac{1}{2\pi}e^{\frac{-(r^2)}{2}}\frac{1}{2}dr^2d\theta\\
+  	&= \brak{\frac{1}{2}e^{\frac{-(r^2)}{2}}dr^2}\brak{\frac{1}{2}d\theta}\\
+  	&= f_{R^2}(r^2)dr^2 f_{\theta}(\theta)d\theta
+  \end{align}
+  \item from the above equation, we can say that 
+  \begin{align}
+        R^2\perp\theta \,\, (i.e., R^2 \text{ and } \theta \text{ are independent})
+  \end{align}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Proof}
+  \begin{itemize} 
+  \item Generate, $\theta \sim Unif(0,2\pi)$ 
+  \item Generate, $V \sim Exp(\lambda = \frac{1}{2})$ (i.e., $V = R^2$) and compute 
+  \begin{align}
+        R=\sqrt{V}
+  \end{align}
+  \item Compute 
+  \begin{align}
+        X = R\cos\theta\\
+        Y = R\sin\theta\\
+  \end{align}
+  \item where, $X,Y$ are i.i.d in $\sim \mathcal{N}(0,1)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Proof}
+  \begin{itemize} 
+  \item Then  
+  \begin{align}
+        \theta &= 2\pi U_1\\
+        V &= -2log(U_2)
+  \end{align}
+  \item We can prove $V = -2log(U_2)$ using the c.d.f definition of the exponential distribution
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Proof for $V = -2log(U_2)$}
+  \begin{itemize} 
+  \item Let $X$ be a random variable following an exponential distribution with rate parameter $\lambda = \frac{1}{2}$, denoted as $X \sim \text{Exp}\brak{\frac{1}{2}}$. The cumulative distribution function (CDF) of the exponential distribution is given by:
+
+\begin{align}
+F(x) &= 1 - e^{-\frac{x}{2}}
+\end{align}
+
+\item Now, suppose we have a random variable $U$ following a uniform distribution in the interval $[0, 1]$, denoted as $U \sim \text{U}(0, 1)$. The CDF of the uniform distribution is simply:
+
+\begin{align}
+F_U(u) &= u, \text{ for } 0 \leq u \leq 1
+\end{align}
+
+\item We can use the probability integral transform to express the exponential random variable $X$ in terms of the uniform random variable $U$:
+
+\begin{align}
+F(x) &= F_U(u) \\
+1 - e^{-\frac{x}{2}} &= u
+\end{align}
+
+\item Now, solve for $x$:
+
+\begin{align}
+e^{-\frac{x}{2}} &= 1 - u \\
+-\frac{x}{2} &= \ln(1 - u) \\
+x &= -2 \ln(1 - u)
+\end{align}
+
+\item So, $X \sim -2 \ln(1 - U)$ for $U \sim \text{U}(0, 1)$. This expression represents the exponential random variable $X$ in terms of a uniform random variable $U$.
+  \end{itemize}
+\end{frame}
+
 \begin{frame}[allowframebreaks]{C-code}
-  \lstinputlisting[language=C]{/home/sameer/EE23010/KHP/codes/rand.c}
+  \lstinputlisting[language=C]{/home/mayank/EE23010/KHP/codes/rand.c}
   % Include your LaTeX equations and calculations here...
 \end{frame}
 
 \begin{frame}{Python-code}
-  \lstinputlisting[language=Python]{/home/sameer/EE23010/KHP/codes/rand.py}
+  \lstinputlisting[language=Python]{/home/mayank/EE23010/KHP/codes/rand.py}
   % Include your LaTeX equations and calculations here...
 \end{frame}
 
 \begin{frame}{Python-code}
 \begin{figure}
   \centering
-  \includegraphics[width=\columnwidth]{/home/sameer/EE23010/KHP/figs/figure1.png}  % Replace 'image_filename' with your image file name
+  \includegraphics[width=\columnwidth]{/home/mayank/EE23010/KHP/figs/figure1.png}  % Replace 'image_filename' with your image file name
   \caption{Histogram plot of density of $Z_0$}
   \label{fig:your_label}
 \end{figure}
@@ -226,20 +302,29 @@ then which one of the following statements is true?
 \end{frame}
 
 \begin{frame}[allowframebreaks]{C-code}
-  \lstinputlisting[language=C]{/home/sameer/EE23010/KHP/codes1/rand.c}
+  \lstinputlisting[language=C]{/home/mayank/EE23010/KHP/codes1/rand.c}
   % Include your LaTeX equations and calculations here...
 \end{frame}
 
-\begin{frame}{Python-code}
-  \lstinputlisting[language=Python]{/home/sameer/EE23010/KHP/codes1/rand.py}
+\begin{frame}[allowframebreaks]{Python-code}
+  \lstinputlisting[language=Python]{/home/mayank/EE23010/KHP/codes1/rand.py}
   % Include your LaTeX equations and calculations here...
 \end{frame}
 
-\begin{frame}{Python-code}
+\begin{frame}{PDF of X}
 \begin{figure}
   \centering
-  \includegraphics[width=\columnwidth]{/home/sameer/EE23010/KHP/figs/figure2.png}  % Replace 'image_filename' with your image file name
-  \caption{Histogram plot of density of $Z_0$}
+  \includegraphics[width=\columnwidth]{/home/mayank/EE23010/KHP/figs/figure2.png}  % Replace 'image_filename' with your image file name
+  \caption{pdf of X}
+  \label{fig:your_label}
+\end{figure}
+\end{frame}
+
+\begin{frame}{CDF of X}
+\begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{/home/mayank/EE23010/KHP/figs/figure3.png}  % Replace 'image_filename' with your image file name
+  \caption{cdf of X}
   \label{fig:your_label}
 \end{figure}
 \end{frame}

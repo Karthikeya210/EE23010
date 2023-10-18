@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 #define M_PI 3.14159265358979323846
-
 double cdf(double x) {
     if (x < -1) {
         return 0.5 * (1.0 + erf(x / sqrt(2.0)));
@@ -30,7 +29,8 @@ int main() {
     for (int i = 0; i < num; i++) {
         double x = x_min + step * i;
         double sample = pdf(x);
-        fprintf(outfile, "%lf %lf\n", x, sample);
+        double sample1 = cdf(x);
+        fprintf(outfile, "%lf %lf %lf\n", x, sample, sample1);
     }
 
     fclose(outfile);

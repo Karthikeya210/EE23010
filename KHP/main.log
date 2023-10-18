@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.8.2)  17 OCT 2023 05:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.8.2)  18 OCT 2023 06:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1450,103 +1450,111 @@ LaTeX Font Info:    Font shape `TS1/txss/m/n' will be
 (Font)              scaled to size 5.69998pt on input line 135.
  [4
 
-]
-LaTeX Font Info:    Trying to load font information for OT1+txtt on input line 
-140.
-
-(/usr/share/texlive/texmf-dist/tex/latex/txfonts/ot1txtt.fd
-File: ot1txtt.fd 2000/12/15 v3.1
-)
-(/home/sayyam/KHP/codes/rand.c) [5
+] [5
 
 ] [6
 
-
-] [7
-
-
-] (/home/sayyam/KHP/codes/rand.py)
-Overfull \vbox (22.7317pt too high) detected at line 145
- []
-
-[8
+]
+[7
 
 ]
-</home/sayyam/KHP/figs/figure1.png, id=250, 462.528pt x 346.896pt>
-File: /home/sayyam/KHP/figs/figure1.png Graphic file (type png)
-<use /home/sayyam/KHP/figs/figure1.png>
-Package pdftex.def Info: /home/sayyam/KHP/figs/figure1.png  used on input line 
-154.
-(pdftex.def)             Requested size: 307.28987pt x 230.4765pt.
-LaTeX Font Info:    Font shape `OT1/txss/m/n' will be
-(Font)              scaled to size 9.49997pt on input line 154.
-LaTeX Font Info:    Font shape `OT1/txss/m/n' will be
-(Font)              scaled to size 6.64998pt on input line 154.
-LaTeX Font Info:    Font shape `OT1/txss/m/n' will be
-(Font)              scaled to size 4.74998pt on input line 154.
-LaTeX Font Info:    Font shape `OT1/txss/m/it' in size <10> not available
-(Font)              Font shape `OT1/txss/m/sl' tried instead on input line 154.
+LaTeX Font Info:    Trying to load font information for OT1+txtt on input line 
+192.
+ (/usr/share/texlive/texmf-dist/tex/latex/txfonts/ot1txtt.fd
+File: ot1txtt.fd 2000/12/15 v3.1
+)
+(/home/sameer/EE23010/KHP/codes/rand.c) [8
 
-LaTeX Font Info:    Font shape `OT1/txss/m/sl' will be
-(Font)              scaled to size 9.49997pt on input line 154.
-LaTeX Font Info:    Font shape `OT1/txss/m/it' in size <7> not available
-(Font)              Font shape `OT1/txss/m/sl' tried instead on input line 154.
+] [9
 
-LaTeX Font Info:    Font shape `OT1/txss/m/sl' will be
-(Font)              scaled to size 6.64998pt on input line 154.
-LaTeX Font Info:    Font shape `OT1/txss/m/it' in size <5> not available
-(Font)              Font shape `OT1/txss/m/sl' tried instead on input line 154.
 
-LaTeX Font Info:    Font shape `OT1/txss/m/sl' will be
-(Font)              scaled to size 4.74998pt on input line 154.
-LaTeX Font Info:    Font shape `TS1/txss/m/n' will be
-(Font)              scaled to size 9.49997pt on input line 154.
-LaTeX Font Info:    Font shape `TS1/txss/m/n' will be
-(Font)              scaled to size 6.64998pt on input line 154.
-LaTeX Font Info:    Font shape `TS1/txss/m/n' will be
-(Font)              scaled to size 4.74998pt on input line 154.
+] [10
 
-Overfull \vbox (44.89836pt too high) detected at line 154
+
+]
+(/home/sameer/EE23010/KHP/codes/rand.py)
+Overfull \vbox (22.7317pt too high) detected at line 197
  []
 
-[9
-
- </home/sayyam/KHP/figs/figure1.png>] [10
-
-] (/home/sayyam/KHP/codes1/rand.c)
 [11
 
-] [12
+]
+</home/sameer/EE23010/KHP/figs/figure1.png, id=326, 462.528pt x 346.896pt>
+File: /home/sameer/EE23010/KHP/figs/figure1.png Graphic file (type png)
+<use /home/sameer/EE23010/KHP/figs/figure1.png>
+Package pdftex.def Info: /home/sameer/EE23010/KHP/figs/figure1.png  used on inp
+ut line 206.
+(pdftex.def)             Requested size: 307.28987pt x 230.4765pt.
+LaTeX Font Info:    Font shape `OT1/txss/m/n' will be
+(Font)              scaled to size 9.49997pt on input line 206.
+LaTeX Font Info:    Font shape `OT1/txss/m/n' will be
+(Font)              scaled to size 6.64998pt on input line 206.
+LaTeX Font Info:    Font shape `OT1/txss/m/n' will be
+(Font)              scaled to size 4.74998pt on input line 206.
+LaTeX Font Info:    Font shape `OT1/txss/m/it' in size <10> not available
+(Font)              Font shape `OT1/txss/m/sl' tried instead on input line 206.
 
+LaTeX Font Info:    Font shape `OT1/txss/m/sl' will be
+(Font)              scaled to size 9.49997pt on input line 206.
+LaTeX Font Info:    Font shape `OT1/txss/m/it' in size <7> not available
+(Font)              Font shape `OT1/txss/m/sl' tried instead on input line 206.
 
-] [13
+LaTeX Font Info:    Font shape `OT1/txss/m/sl' will be
+(Font)              scaled to size 6.64998pt on input line 206.
+LaTeX Font Info:    Font shape `OT1/txss/m/it' in size <5> not available
+(Font)              Font shape `OT1/txss/m/sl' tried instead on input line 206.
 
+LaTeX Font Info:    Font shape `OT1/txss/m/sl' will be
+(Font)              scaled to size 4.74998pt on input line 206.
+LaTeX Font Info:    Font shape `TS1/txss/m/n' will be
+(Font)              scaled to size 9.49997pt on input line 206.
+LaTeX Font Info:    Font shape `TS1/txss/m/n' will be
+(Font)              scaled to size 6.64998pt on input line 206.
+LaTeX Font Info:    Font shape `TS1/txss/m/n' will be
+(Font)              scaled to size 4.74998pt on input line 206.
 
-] (/home/sayyam/KHP/codes1/rand.py)
-Overfull \vbox (77.13167pt too high) detected at line 184
+Overfull \vbox (44.89836pt too high) detected at line 206
  []
 
-[14
+[12
+
+ </home/sameer/EE23010/KHP/figs/figure1.png>] [13
 
 ]
-</home/sayyam/KHP/figs/figure2.png, id=407, 462.528pt x 346.896pt>
-File: /home/sayyam/KHP/figs/figure2.png Graphic file (type png)
-<use /home/sayyam/KHP/figs/figure2.png>
-Package pdftex.def Info: /home/sayyam/KHP/figs/figure2.png  used on input line 
-193.
+(/home/sameer/EE23010/KHP/codes1/rand.c) [14
+
+] [15
+
+
+] [16
+
+
+]
+(/home/sameer/EE23010/KHP/codes1/rand.py)
+Overfull \vbox (77.13167pt too high) detected at line 236
+ []
+
+[17
+
+]
+</home/sameer/EE23010/KHP/figs/figure2.png, id=483, 462.528pt x 346.896pt>
+File: /home/sameer/EE23010/KHP/figs/figure2.png Graphic file (type png)
+<use /home/sameer/EE23010/KHP/figs/figure2.png>
+Package pdftex.def Info: /home/sameer/EE23010/KHP/figs/figure2.png  used on inp
+ut line 245.
 (pdftex.def)             Requested size: 307.28987pt x 230.4765pt.
 pdfTeX warning (ext4): destination with the same identifier (name{fig:your_labe
 l}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.193 \end{frame}
+l.245 \end{frame}
                  
-Overfull \vbox (44.89836pt too high) detected at line 193
+Overfull \vbox (44.89836pt too high) detected at line 245
  []
 
-[15
+[18
 
- </home/sayyam/KHP/figs/figure2.png>]
+ </home/sameer/EE23010/KHP/figs/figure2.png>]
 \tf@nav=\write6
 \openout6 = `main.nav'.
 
@@ -1564,27 +1572,25 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 33842 strings out of 478287
- 693563 string characters out of 5849290
- 1287172 words of memory out of 5000000
- 51195 multiletter control sequences out of 15000+600000
- 512485 words of font info for 128 fonts, out of 8000000 for 9000
+ 33857 strings out of 478287
+ 693931 string characters out of 5849290
+ 1287248 words of memory out of 5000000
+ 51199 multiletter control sequences out of 15000+600000
+ 516753 words of font info for 134 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,16n,122p,428b,1411s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Navigation16} has been referenced but does not ex
-ist, replaced by a fixed one
-
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/txfonts/txex.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/txfonts/txsy.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txt
-t.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on main.pdf (15 pages, 123536 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/txfonts/rtxmi.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/txfonts/txex.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfo
+nts/txsy.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txtt.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on main.pdf (18 pages, 140992 bytes).
 PDF statistics:
- 474 PDF objects out of 1000 (max. 8388607)
- 416 compressed objects within 5 object streams
- 34 named destinations out of 1000 (max. 500000)
+ 556 PDF objects out of 1000 (max. 8388607)
+ 493 compressed objects within 5 object streams
+ 39 named destinations out of 1000 (max. 500000)
  125 words of extra memory for PDF output out of 10000 (max. 10000000)
 

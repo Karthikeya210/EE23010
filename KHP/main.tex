@@ -134,20 +134,72 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Proof}
+  \begin{itemize}
+  \item Let $X$ and $Y$ be independent standard normal variables 
+  \begin{align}
+  	X,Y \sim \mathcal{N}(0,1) \quad and \quad X\perp Y
+  \end{align}
+  \item The joint pdf of $X$ and $Y$ is given by 
+  \begin{align}
+  	f_{XY}(X,Y) &= f(x)f(y)\\
+  	&= \frac{1}{\sqrt{2\pi}}e^{\frac{-x^2}{2}}.\frac{1}{\sqrt{2\pi}}e^{\frac{-y^2}{2}}\\
+  	&= \frac{1}{\sqrt{2\pi}}e^{\frac{-(x^2+y^2)}{2}}
+  \end{align}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Proof}
+  \begin{itemize} 
+  \item The relationship between Cartesian coordinates $(x,y)$ and polar coordinates $(r,\theta)$ is as follows 
+  \begin{align}
+  	x=r\cos\theta \\
+  	y=r\sin\theta
+  \end{align}
+  \item Change $f_{XY}(x,y)$ to polar coordinates :
+  \begin{align}
+  	f_{XY}(x,y) dxdy = f_{R\theta}(r,\theta) drd\theta
+  \end{align}
+  \item i.e.,
+  \begin{align}
+  	f_{R\theta}(r,\theta) = f_{XY}(x,y) \frac{dxdy}{drd\theta}
+  \end{align}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Proof}
+  \begin{itemize} 
+  \item where J is the Jacobian 
+  \begin{align}
+  	J &= \mydet{\frac{\partial x}{\partial r} \,\, \frac{\partial x}{\partial \theta}\\\frac{\partial y}{\partial r} \,\, \frac{\partial y}{\partial \theta}}\\
+  	&= \mydet{\cos\theta \,\, -r\sin\theta \\ \sin\theta \,\, r\cos\theta}
+  	&= r
+  \end{align}
+  \item Change $f_{XY}(x,y)$ to polar coordinates :
+  \begin{align}
+  	f_{XY}(x,y) dxdy = f_{R\theta}(r,\theta) drd\theta
+  \end{align}
+  \item i.e.,
+  \begin{align}
+  	f_{R\theta}(r,\theta) = f_{XY}(x,y) \frac{dxdy}{drd\theta}
+  \end{align}
+  \end{itemize}
+\end{frame}
+
 \begin{frame}[allowframebreaks]{C-code}
-  \lstinputlisting[language=C]{/home/sayyam/KHP/codes/rand.c}
+  \lstinputlisting[language=C]{/home/sameer/EE23010/KHP/codes/rand.c}
   % Include your LaTeX equations and calculations here...
 \end{frame}
 
 \begin{frame}{Python-code}
-  \lstinputlisting[language=Python]{/home/sayyam/KHP/codes/rand.py}
+  \lstinputlisting[language=Python]{/home/sameer/EE23010/KHP/codes/rand.py}
   % Include your LaTeX equations and calculations here...
 \end{frame}
 
 \begin{frame}{Python-code}
 \begin{figure}
   \centering
-  \includegraphics[width=\columnwidth]{/home/sayyam/KHP/figs/figure1.png}  % Replace 'image_filename' with your image file name
+  \includegraphics[width=\columnwidth]{/home/sameer/EE23010/KHP/figs/figure1.png}  % Replace 'image_filename' with your image file name
   \caption{Histogram plot of density of $Z_0$}
   \label{fig:your_label}
 \end{figure}
@@ -174,19 +226,19 @@ then which one of the following statements is true?
 \end{frame}
 
 \begin{frame}[allowframebreaks]{C-code}
-  \lstinputlisting[language=C]{/home/sayyam/KHP/codes1/rand.c}
+  \lstinputlisting[language=C]{/home/sameer/EE23010/KHP/codes1/rand.c}
   % Include your LaTeX equations and calculations here...
 \end{frame}
 
 \begin{frame}{Python-code}
-  \lstinputlisting[language=Python]{/home/sayyam/KHP/codes1/rand.py}
+  \lstinputlisting[language=Python]{/home/sameer/EE23010/KHP/codes1/rand.py}
   % Include your LaTeX equations and calculations here...
 \end{frame}
 
 \begin{frame}{Python-code}
 \begin{figure}
   \centering
-  \includegraphics[width=\columnwidth]{/home/sayyam/KHP/figs/figure2.png}  % Replace 'image_filename' with your image file name
+  \includegraphics[width=\columnwidth]{/home/sameer/EE23010/KHP/figs/figure2.png}  % Replace 'image_filename' with your image file name
   \caption{Histogram plot of density of $Z_0$}
   \label{fig:your_label}
 \end{figure}

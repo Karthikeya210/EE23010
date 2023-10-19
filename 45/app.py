@@ -4,7 +4,7 @@ import os
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
 # Set the directory where your audio files are stored
-audio_dir = "/home/sameer/p/audio"
+audio_dir = "/home/sayyam/EE23010/45/audio"
 
 # List of available audio files
 audio_files = os.listdir(audio_dir)

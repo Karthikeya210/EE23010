@@ -84,6 +84,7 @@
     ```bash
     virtualenv venv
     
+    
     ```bash
     source venv/bin/activate
 
@@ -96,6 +97,8 @@
 
    ```bash
    cd EE23010
+
+   
    ```bash
    cd 45
 
@@ -104,6 +107,8 @@
    
    ```bash
    nvim app.py
+
+   
    ```bash
    # Set the directory where your audio files are stored
    audio_dir = "root/EE23010/45/audio"

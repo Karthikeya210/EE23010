@@ -73,7 +73,7 @@
     - Refer to this [document](https://raw.githubusercontent.com/gadepall/fwc-1/main/installation/neovim.txt) to setup neovim and ranger.
     - For usage tips refer to this [document](https://iith-my.sharepoint.com/:x:/g/personal/gadepall_ee_iith_ac_in/EaI2vt4wm7hMmFyQz1AZXr4BWLd1KSZX290xKXfqk-qcgQ?e=KOoUTH).
 
-## Creating a virtual environment 
+## Cloning the repo 
 1. Enter proot-distro
    
     ```bash
@@ -87,7 +87,13 @@
     ```bash
     source venv/bin/activate
 
-3. 
+3. Clone the repo
+
+   ```bash
+   git clone https://github.com/Karthikeya210/EE23010.git
+
+
+
 
 
 

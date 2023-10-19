@@ -92,6 +92,29 @@
    ```bash
    git clone https://github.com/Karthikeya210/EE23010.git
 
+4. Enter into the project file and run thee python file 
+
+   ```bash
+   cd EE23010
+   ```bash
+   cd 45
+
+5. Change the directory of the audio files in app.py
+   
+   
+   ```bash
+   nvim app.py
+   ```bash
+   # Set the directory where your audio files are stored
+   audio_dir = "root/EE23010/45/audio"
+
+7. Run your python file
+
+   ```bash
+   python3 app.py 
+   
+   
+
 
 
 

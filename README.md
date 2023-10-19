@@ -83,6 +83,7 @@
 
     ```bash
     virtualenv venv
+    ```
     
     
     ```bash
@@ -97,16 +98,18 @@
 
    ```bash
    cd EE23010
+   ```
 
-   
    ```bash
    cd 45
+   ```
 
 5. Change the directory of the audio files in app.py
    
    
    ```bash
    nvim app.py
+   ```
 
    
    ```bash

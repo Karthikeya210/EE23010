@@ -89,12 +89,18 @@
     ```bash
     source venv/bin/activate
 
-3. Clone the repo
+3. Install flask
+
+   ```bash
+   pip3 install flask
+
+
+4. Clone the repo
 
    ```bash
    git clone https://github.com/Karthikeya210/EE23010.git
 
-4. Enter into the project file and run thee python file 
+5. Enter into the project file and run thee python file 
 
    ```bash
    cd EE23010
@@ -104,7 +110,7 @@
    cd 45
    ```
 
-5. Change the directory of the audio files in app.py
+6. Change the directory of the audio files in app.py
    
    
    ```bash

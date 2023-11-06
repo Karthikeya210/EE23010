@@ -1,0 +1,30 @@
+<!-- albums.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Albums</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Albums</h1>
+
+        <!-- Display the list of albums with numbers and images -->
+        <ul class="song-list">
+            {% for album in albums %}
+            <li class="album-item">
+                {% if album == "Music" %}
+                <img src="{{ url_for('static', filename='pictures/Music.jpg') }}" alt="{{ album }}" class="album-image">
+                {% elif album == "God" %}
+                <img src="{{ url_for('static', filename='pictures/God.jpeg') }}" alt="{{ album }}" class="album-image">
+                {% endif %}
+                <a href="{{ url_for('play_album', album=album) }}">{{ loop.index }}. {{ album }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
+

@@ -11,9 +11,11 @@
     <div class="container">
         <h1>Spotify_LITE</h1>
 
-        <!-- Add a checkbox for shuffle option -->
-        <input type="checkbox" id="shuffleCheckbox" onchange="toggleShuffle(this)">
-        <label for="shuffleCheckbox">Shuffle</label>
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search for a song...">
+    <div id="suggestions" class="suggestions"></div>
+</div>
+
 
         <!-- Add a div to display the current song title and number -->
         <div class="song-info">
@@ -26,10 +28,14 @@
             <source src="" type="audio/mpeg">
         </audio>
         
-        <div class="controls">
-            <button onclick="playPreviousSong()">Previous</button>
-            <button onclick="playNextSong()">Next</button>
-        </div>
+<div class="controls">
+    <button onclick="playPreviousSong()">Previous</button>
+    <button onclick="playNextSong()">Next</button>
+    <div class="shuffle-container">
+        <input type="checkbox" id="shuffleCheckbox" onchange="toggleShuffle(this)">
+        <label for="shuffleCheckbox">Shuffle</label>
+    </div>
+</div>
 
         <!-- Display the list of songs -->
         <ul class="song-list">
@@ -135,6 +141,56 @@
             audioPlayer.play();
         });
     }
+    // Function to filter the songs based on user input
+    function filterSongs() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const songList = document.getElementById('songList');
+        const items = songList.getElementsByTagName('li');
+
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            const text = item.textContent || item.innerText;
+
+            if (text.toLowerCase().indexOf(filter) > -1) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        }
+    }
+    // Search and suggest songs
+    const searchInput = document.getElementById('searchInput');
+    const suggestions = document.getElementById('suggestions');
+
+    searchInput.addEventListener('input', () => {
+        const searchValue = searchInput.value.toLowerCase();
+
+        // Filter the audio_files to find matching song URLs
+        const matchingSongs = audioFiles.filter(audioFile => audioFile.toLowerCase().includes(searchValue));
+
+        // Clear existing suggestions
+        suggestions.innerHTML = '';
+
+        // Display matching song URLs as suggestions and play the selected song on click
+        matchingSongs.forEach(songURL => {
+            const suggestion = document.createElement('div');
+            suggestion.textContent = songURL;
+            suggestion.addEventListener('click', () => {
+                searchInput.value = songURL;
+                suggestions.innerHTML = '';
+                playAudio(songURL);
+            });
+            suggestions.appendChild(suggestion);
+        });
+    });
+        document.addEventListener('click', function (event) {
+        const searchInput = document.getElementById('searchInput');
+        const suggestions = document.getElementById('suggestions');
+        if (event.target !== searchInput && event.target !== suggestions) {
+            suggestions.innerHTML = '';
+        }
+    });
 </script>
 
     </div>

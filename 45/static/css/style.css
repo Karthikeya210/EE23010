@@ -32,6 +32,11 @@ h1 {
     border-radius: 5px;
     margin: 5px 0;
     padding: 10px;
+    transition: background-color 0.2s; /* Add a smooth transition effect */
+}
+
+.song-list li:hover {
+    background-color: #1db954; /* Turn green on hover (Spotify green color) */
 }
 
 .song-list a {
@@ -54,7 +59,10 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin: 0 10px;
+}
+
+.shuffle-container {
+    display: flex;
 }
 
 .song-info {
@@ -85,6 +93,42 @@ button {
     height: 70px; /* Adjust the height as needed */
     margin-right: 10px;
     border-radius: 5px; /* Optional: Add rounded corners */
+}
+
+.search-container {
+    margin-top: 20px;
+    align-items: center;
+}
+
+
+/* Style for the search suggestions */
+.suggestions {
+    background-color: #000;
+    border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 1;
+}
+
+#searchInput {
+    flex: 1; /* Expand to fill available space */
+    padding: 6px;
+    border: 1px solid #1db954; /* Border color in Spotify green */
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none; /* Remove the input outline on focus */
+}
+
+/* Style for the suggestion items */
+.suggestions div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestions div:hover {
+    background-color: #1db954; /* Highlight in Spotify green on hover */
+    color: #fff;
 }
 
 /* ... (remaining CSS rules) ... */

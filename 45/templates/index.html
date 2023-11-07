@@ -37,23 +37,22 @@
     </div>
 </div>
 
-        <!-- Display the list of songs -->
-        <ul class="song-list">
-            {% for audio_file in audio_files %}
-            <li>
-                <a href="#" onclick="playAudio('{{ audio_file }}', '{{ album }}')">{{ loop.index }}. {{ audio_file }}</a>
-            </li>
-            {% endfor %}
-        </ul>
+<ul class="song-list">
+    {% for audio_file in audio_files | sort %}
+    <li>
+        <a href="#" onclick="playAudio('{{ audio_file }}')">{{ loop.index }}. {{ audio_file }}</a>
+    </li>
+    {% endfor %}
+</ul>
 
 <script>
     let currentSongIndex = {{ current_song_index }};
     let lastSelectedAudio = null;
     let isShuffleEnabled = false;
-    let originalAudioFiles = [{% for audio_file in audio_files %}"{{ audio_file }}"{% if not loop.last %},{% endif %}{% endfor %}];
+    let originalAudioFiles = [{% for audio_file in audio_files | sort %}"{{ audio_file }}"{% if not loop.last %},{% endif %}{% endfor %}];
     let audioFiles = [...originalAudioFiles]; // Create a copy of the original order
     let albumName = "{{ album }}"; // Retrieve the selected album name
-    let songTitles = [{% for audio_file in audio_files %}"{{ audio_file.split('.mp3')[0] }}"{% if not loop.last %},{% endif %}{% endfor %}];
+    let songTitles = [{% for audio_file in audio_files | sort %}"{{ audio_file.split('.mp3')[0] }}"{% if not loop.last %},{% endif %}{% endfor %}];
 
     function toggleShuffle(checkbox) {
         isShuffleEnabled = checkbox.checked;

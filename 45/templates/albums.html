@@ -19,6 +19,8 @@
                 <img src="{{ url_for('static', filename='pictures/Music.jpg') }}" alt="{{ album }}" class="album-image">
                 {% elif album == "God" %}
                 <img src="{{ url_for('static', filename='pictures/God.jpeg') }}" alt="{{ album }}" class="album-image">
+                {% elif album == "Frnds" %}
+                <img src="{{ url_for('static', filename='pictures/Frnds.avif') }}" alt="{{ album }}" class="album-image">
                 {% endif %}
                 <a href="{{ url_for('play_album', album=album) }}">{{ loop.index }}. {{ album }}</a>
             </li>

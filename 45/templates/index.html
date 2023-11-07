@@ -1,0 +1,198 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Spotify-Like Audio Player</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Spotify_LITE</h1>
+
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search for a song...">
+    <div id="suggestions" class="suggestions"></div>
+</div>
+
+
+        <!-- Add a div to display the current song title and number -->
+        <div class="song-info">
+            <p id="songTitle"></p>
+            <p id="songNumber"></p>
+        </div>
+        
+        <!-- Audio player to play the selected song -->
+        <audio id="audioPlayer" controls onended="playNextSong()">
+            <source src="" type="audio/mpeg">
+        </audio>
+        
+<div class="controls">
+    <button onclick="playPreviousSong()">Previous</button>
+    <button onclick="playNextSong()">Next</button>
+    <div class="shuffle-container">
+        <input type="checkbox" id="shuffleCheckbox" onchange="toggleShuffle(this)">
+        <label for="shuffleCheckbox">Shuffle</label>
+    </div>
+</div>
+
+<ul class="song-list">
+    {% for audio_file in audio_files | sort %}
+    <li>
+        <a href="#" onclick="playAudio('{{ audio_file }}')">{{ loop.index }}. {{ audio_file }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<script>
+    let currentSongIndex = {{ current_song_index }};
+    let lastSelectedAudio = null;
+    let isShuffleEnabled = false;
+    let originalAudioFiles = [{% for audio_file in audio_files | sort %}"{{ audio_file }}"{% if not loop.last %},{% endif %}{% endfor %}];
+    let audioFiles = [...originalAudioFiles]; // Create a copy of the original order
+    let albumName = "{{ album }}"; // Retrieve the selected album name
+    let songTitles = [{% for audio_file in audio_files | sort %}"{{ audio_file.split('.mp3')[0] }}"{% if not loop.last %},{% endif %}{% endfor %}];
+
+    function toggleShuffle(checkbox) {
+        isShuffleEnabled = checkbox.checked;
+    }
+
+    function updateSongInfo() {
+        const songTitle = document.getElementById('songTitle');
+        const songNumber = document.getElementById('songNumber');
+
+        if (currentSongIndex >= 0 && currentSongIndex < songTitles.length) {
+            songTitle.textContent = `Now Playing: ${songTitles[currentSongIndex]}`;
+            songNumber.textContent = `Song ${currentSongIndex + 1}`;
+        }
+    }
+
+    function playAudio(selectedAudio) {
+        currentSongIndex = audioFiles.indexOf(selectedAudio);
+        lastSelectedAudio = audioFiles[currentSongIndex];
+        updateSongInfo();
+
+        fetch('/', {
+            method: 'POST',
+            body: new URLSearchParams({ selected_audio: selectedAudio, album: albumName }),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .then(response => response.blob())
+        .then(audioBlob => {
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.src = audioUrl;
+            audioPlayer.load();
+            audioPlayer.play();
+        });
+    }
+
+    function playNextSong() {
+        if (isShuffleEnabled) {
+            // Generate a random index
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * audioFiles.length);
+            } while (randomIndex === currentSongIndex);
+            currentSongIndex = randomIndex;
+        } else {
+            currentSongIndex = (currentSongIndex + 1) % audioFiles.length;
+        }
+
+        lastSelectedAudio = audioFiles[currentSongIndex];
+        updateSongInfo();
+
+        loadAudio(currentSongIndex);
+    }
+
+    function playPreviousSong() {
+        if (isShuffleEnabled) {
+            // Generate a random index
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * audioFiles.length);
+            } while (randomIndex === currentSongIndex);
+            currentSongIndex = randomIndex;
+        } else {
+            currentSongIndex = (currentSongIndex - 1 + audioFiles.length) % audioFiles.length;
+        }
+
+        lastSelectedAudio = audioFiles[currentSongIndex];
+        updateSongInfo();
+
+        loadAudio(currentSongIndex);
+    }
+
+    function loadAudio(index) {
+        const audioFile = audioFiles[index];
+        fetch('/', {
+            method: 'POST',
+            body: new URLSearchParams({ selected_audio: audioFile, album: albumName }),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .then(response => response.blob())
+        .then(audioBlob => {
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.src = audioUrl;
+            audioPlayer.load();
+            audioPlayer.play();
+        });
+    }
+    // Function to filter the songs based on user input
+    function filterSongs() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const songList = document.getElementById('songList');
+        const items = songList.getElementsByTagName('li');
+
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            const text = item.textContent || item.innerText;
+
+            if (text.toLowerCase().indexOf(filter) > -1) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        }
+    }
+    // Search and suggest songs
+    const searchInput = document.getElementById('searchInput');
+    const suggestions = document.getElementById('suggestions');
+
+    searchInput.addEventListener('input', () => {
+        const searchValue = searchInput.value.toLowerCase();
+
+        // Filter the audio_files to find matching song URLs
+        const matchingSongs = audioFiles.filter(audioFile => audioFile.toLowerCase().includes(searchValue));
+
+        // Clear existing suggestions
+        suggestions.innerHTML = '';
+
+        // Display matching song URLs as suggestions and play the selected song on click
+        matchingSongs.forEach(songURL => {
+            const suggestion = document.createElement('div');
+            suggestion.textContent = songURL;
+            suggestion.addEventListener('click', () => {
+                searchInput.value = songURL;
+                suggestions.innerHTML = '';
+                playAudio(songURL);
+            });
+            suggestions.appendChild(suggestion);
+        });
+    });
+        document.addEventListener('click', function (event) {
+        const searchInput = document.getElementById('searchInput');
+        const suggestions = document.getElementById('suggestions');
+        if (event.target !== searchInput && event.target !== suggestions) {
+            suggestions.innerHTML = '';
+        }
+    });
+</script>
+
+    </div>
+</body>
+</html>
+

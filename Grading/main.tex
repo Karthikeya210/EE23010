@@ -1,0 +1,68 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=1in}
+
+\definecolor{myblack}{RGB}{0, 0, 0} % Black color
+\definecolor{mycyan}{RGB}{0, 255, 255} % Cyan color
+\definecolor{mygold}{RGB}{218, 165, 32} % Gold color
+
+\pagecolor{myblack}
+\color{mycyan}
+
+\title{\textcolor{mygold}{Probability Course Grading Report}}
+\author{\textcolor{mygold}{Karthikeya Hanu Prakash Kanithi}}
+
+\begin{document}
+
+\maketitle
+
+\section{\textcolor{mygold}{Introduction}}
+
+This report outlines the grading process for the course 'EE23010: Probability and Random Processes' in Fall 2023, offered by Dr. G V V Sharma using k-means clustering. The goal is to assign grades based on student performance, as determined by clustering their marks.
+
+\section{\textcolor{mygold}{Data and Preprocessing}}
+
+The marks data was obtained from the course assessments and stored in an Excel file. The Python script used for clustering reads the data, standardizes it, and applies k-means clustering with seven clusters.
+
+\section{\textcolor{mygold}{K-Means Clustering}}
+
+\subsection{\textcolor{mygold}{Overview}}
+
+K-means clustering is an unsupervised machine learning algorithm used for partitioning a dataset into K distinct, non-overlapping subsets (clusters). The algorithm works iteratively to assign each data point to one of K clusters based on its features.
+
+\subsection{\textcolor{mygold}{Algorithm Steps}}
+
+\begin{enumerate}
+    \item \textbf{Initialization:} Choose K initial cluster centroids randomly.
+    \item \textbf{Assignment:} Assign each data point to the nearest centroid, forming K clusters.
+    \item \textbf{Update:} Recalculate the centroids based on the mean of data points in each cluster.
+    \item \textbf{Repeat:} Repeat steps 2-3 until convergence or a maximum number of iterations.
+\end{enumerate}
+
+\section{\textcolor{mygold}{Grading Based on Clusters}}
+
+The resulting clusters are mapped to grades as follows: ( CLusters are randomly generated)
+
+\begin{itemize}
+    \item \textbf{Cluster 0:} B-
+    \item \textbf{Cluster 1:} A-
+    \item \textbf{Cluster 2:} D
+    \item \textbf{Cluster 3:} B
+    \item \textbf{Cluster 4:} A
+    \item \textbf{Cluster 5:} C-
+    \item \textbf{Cluster 6:} C
+\end{itemize}
+
+Each student is assigned a grade based on the cluster to which their performance belongs.
+
+\section{\textcolor{mygold}{Conclusion}}
+
+This grading process provides a systematic way to categorize student performance in the Probability course. The use of k-means clustering helps in objectively determining grade boundaries.
+
+\end{document}
+
